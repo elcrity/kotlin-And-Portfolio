@@ -3,14 +3,15 @@ package Port.Test
 class Deck(
     var Player: String,//덱을 가진 플레이어 이름
     var Budjet :Int = 100,
-    var card : ArrayList<Card> = ArrayList()//플레이어가 가지고 있는 덱
+    var Card : ArrayList<Card> = ArrayList()//플레이어가 가지고 있는 덱
 )
 
 fun MakePlayer(name: String): Deck = Deck(name)//플레이어 이름 + Card형태의(name,pattern,value값) 배열 생성
 
 fun SetDeck() : ArrayList<Card>{//정해진 벌수의 카드로 패산 생성
-    var num = -1
-    num = inputCheck()
+    var num = 1
+//    println("몇 벌의 카드로 게임을 시작할까요?")
+//    num = inputCheck()
 
 //    while(true) {
 //        println("몇벌의 카드로 게임을 시작할까요?")
@@ -42,14 +43,14 @@ fun SetDeck() : ArrayList<Card>{//정해진 벌수의 카드로 패산 생성
             2 -> card.pattern = "하트"
             3 -> card.pattern = "클로버"
         }
-//        when(i%13){//1~10까지 카드 값 부여
-//            in 0..9 -> card.value = (i%13)+1
-//            in 10..12 -> card.value = 10
-//        }
-        when(i%13){//카드 갯수, 드로우 확인용
-            in 0..9 -> card.value = i
-            in 10..12 -> card.value = i
+        when(i%13){//1~10까지 카드 값 부여
+            in 0..9 -> card.value = (i%13)+1
+            in 10..12 -> card.value = 10
         }
+//        when(i%13){//카드 갯수, 드로우 확인용
+//            in 0..9 -> card.value = i
+//            in 10..12 -> card.value = i
+//        }
 
         deck.add(card)
     }
