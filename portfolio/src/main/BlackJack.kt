@@ -1,18 +1,12 @@
-package Port.Test
-
-import Port.randomDice
+package BlackJack
 
 
 fun BlackJack() {
     //게임 시작시 덱, 플레이어 생성
-    var deck = SetDeck()
-    var dealerHand = MakePlayer("딜러")
-    var handCard1 = MakePlayer("1번")
-    var playerScr = 0
     //라운드 체크
-    var round = 1
+    var input = 0
     println("몇라운드로 게임을 시작할까요?")
-    round = inputCheck()
+    val round = inputCheck()
 
 //    while(true) {
 //        println("몇라운드로 게임을 시작할까요?")
@@ -28,24 +22,44 @@ fun BlackJack() {
 //    }
 
     for (i in 1..round) {//게임실행 본문
-        deck.shuffle()
-        for (i in 0..1) {//기본패
-            handCard1.Card.add(DrawCard(deck))
+        val deck = SetDeck()
+        val dealerHand = MakePlayer("딜러")
+        val handCard1 = MakePlayer("1번")
 
-            dealerHand.Card.add(DrawCard(deck))
+        deck.Card.shuffle()
 
+        DrawStart(handCard1,dealerHand,deck)
+        println()
+
+    while(true) {
+        when (handCard1.Scr) {
+            in 0..20 -> {
+                println(
+                    """추가로 드로우 하시겠습니까?
+                        |1. 드로우
+                        |2. 스탑
+                    """.trimMargin()
+                )
+                input = inputCheck()
+                when (input) {
+                    1 -> {
+                        DrawCard(handCard1,deck)
+                        ShowHandCard(handCard1)
+                    }
+                    2 -> break
+                }
+            }
+            21 -> {
+                println("21")
+                break
+            }
+            in 21..40 -> {
+                println("패배")
+                break
+            }
         }
-        for(i in 0..handCard1.Card.size-1) {
-            ShowHandCard(handCard1.Player, handCard1.Card, i)
-            playerScr += handCard1.Card[i].value
-        }
-        ShowHandCard(dealerHand.Player, dealerHand.Card, 0)
-        println(playerScr)
-        when(playerScr){
-            in 0..20 -> println("추가로 드로우 하시겠습니까?")
-            21 -> println("21")
-            in 21.. 40 -> println("패배")
-        }
+    }
+        println("끝")
 
 
 //    for(i in 0..handCard1.size-1) {//패 확인

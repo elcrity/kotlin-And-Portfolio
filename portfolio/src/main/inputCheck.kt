@@ -1,4 +1,4 @@
-package Port.Test
+package BlackJack
 
 fun inputCheck() :Int{//입력값 null 체크
     while(true) {
@@ -10,6 +10,5 @@ fun inputCheck() :Int{//입력값 null 체크
         }
         else
             return input!!.toInt()
-        break
     }
 }

@@ -1,4 +1,4 @@
-package Port.Test
+package BlackJack
 
 class Card(
     var name :String = "미정",
@@ -14,14 +14,19 @@ class Card(
 //    return dCard
 //}
 
-fun DrawCard(deck :ArrayList<Card>): Card{//셔플과 함께 사용, 첫번째 카드 뽑음
-    var dCard = Card(deck[0].name,deck[0].pattern,deck[0].value)
-    deck.removeAt(0)
-    return dCard
+
+fun ShowCard(Card:ArrayList<Card>, i:Int){
+    print(Card[i].pattern)
+    print(Card[i].name +" ")
+//    print(" " + Card[i].value +" ")
 }
 
-fun ShowHandCard(name:String, Card:ArrayList<Card>, i:Int){
-    print(name + " " + Card[i].name + " ")
-    print(Card[i].pattern)
-    println(" " + Card[i].value)
+fun ShowHandCard(deck:Deck){
+    println("내 현재 패는 ")
+    for(i in 0..deck.Card.size-1) {
+        print(deck.Card[i].pattern + " ")
+        println(deck.Card[i].name)
+    }
+    print("내 점수는 " + deck.Scr)
+    println(" 입니다.")
 }
