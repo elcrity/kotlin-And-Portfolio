@@ -4,22 +4,8 @@ package BlackJack
 fun BlackJack() {
     //게임 시작시 덱, 플레이어 생성
     //라운드 체크
-    var input = 0
     println("몇라운드로 게임을 시작할까요?")
     val round = inputCheck()
-
-//    while(true) {
-//        println("몇라운드로 게임을 시작할까요?")
-//        val input = readLine()//숫자 입력
-//
-//        if(input.equals("")) {//숫자 미입력시 반복
-//            println("숫자가 입력되지 않음. 확인해주세요")
-//            continue
-//        }
-//        else
-//            round = input!!.toInt()
-//        break
-//    }
 
     for (i in 1..round) {//게임실행 본문
         val deck = SetDeck()
@@ -29,9 +15,18 @@ fun BlackJack() {
         deck.Card.shuffle()
 
         DrawStart(handCard1,dealerHand,deck)
-        println()
 
+//블랙잭 테스트용
+//        var testCard1 = Card("A","*",1)
+//        var testCard2 = Card("10","*",10)
+//        handCard1.Card.add(testCard1)
+//        handCard1.Scr += handCard1.Card[0].value
+//        handCard1.Card.add(testCard2)
+//        handCard1.Scr += handCard1.Card[1].value
+
+        println()
     while(true) {
+        yesAce(handCard1)
         when (handCard1.Scr) {
             in 0..20 -> {
                 println(
@@ -40,7 +35,7 @@ fun BlackJack() {
                         |2. 스탑
                     """.trimMargin()
                 )
-                input = inputCheck()
+                var input = inputCheck()
                 when (input) {
                     1 -> {
                         DrawCard(handCard1,deck)
@@ -50,14 +45,19 @@ fun BlackJack() {
                 }
             }
             21 -> {
-                println("21")
+                if(handCard1.Card.size == 2) {
+                    println("블랙잭")
+                } else {
+                    println("21")
+                }
                 break
             }
             in 21..40 -> {
-                println("패배")
+                println("버스트")
                 break
             }
         }
+
     }
         println("끝")
 

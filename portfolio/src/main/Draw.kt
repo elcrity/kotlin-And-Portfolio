@@ -27,7 +27,8 @@ fun DrawStart(player: Deck, dealer :Deck, deck :Deck){
     ShowHandCard(player)
 
     println()
-    print(dealer.pName +" ")
+    println(dealer.pName +" ")
     ShowCard(dealer.Card, 0)
+    println("뒷면")
     println()
 }

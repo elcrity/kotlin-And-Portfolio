@@ -32,7 +32,7 @@ fun SetDeck() : Deck{//정해진 벌수의 카드로 패산 생성
     for(i in 0 .. 52*num-1){
         val card = Card()
         when(i%13){//((0~12)+13*i)까지 각각 A~K
-            0 -> card.name = "Ace"
+            0 -> card.name = "A"
             in 1..9 ->  card.name = ((i%13)+1).toString()
             10 -> card.name = "J"
             11 -> card.name = "Q"
