@@ -32,3 +32,71 @@ fun DrawStart(player: Deck, dealer :Deck, deck :Deck){
     println("뒷면")
     println()
 }
+
+fun DrawPlayer(player: Deck,deck: Deck) {
+    while (true) {
+        yesAce(player)
+        when (player.Scr) {
+            in 0..20 -> {
+                println(
+                    """추가로 드로우 하시겠습니까?
+                            |1. 드로우
+                            |2. 스탑
+                        """.trimMargin()
+                )
+                val input = inputCheck()
+                when (input) {
+                    1 -> {
+                        DrawCard(player, deck)
+                        ShowHandCard(player)
+                    }
+                    2 -> break
+                }
+            }
+            21 -> {
+                if (player.Card.size == 2) {
+                    println("블랙잭")
+                    player.Scr = 100
+                } else {
+                    println("21")
+                }
+                break
+            }
+            else -> {
+                player.Scr = -1
+                break
+            }
+        }
+    }
+}
+
+fun DrawDealer(dealer: Deck,player: Deck,deck : Deck){
+    //딜러 드로우 시키기
+    while(player.Scr != -1){//딜러 드로우 시키기
+        when (dealer.Scr) {
+            in 0..16 -> {
+                println(dealer.pName +"의 점수는 16점 이하 - 드로우")
+                DrawCard(dealer, deck)
+                ShowHandCard(dealer)
+            }
+            in 17..20 -> {
+                println(dealer.pName +"의 점수는 17점 이상 - 스탑")
+                break
+            }
+            21 -> {
+                println(dealer.pName +"의 점수는 21점")
+                if (dealer.Card.size == 2) {
+                    println("블랙잭")
+                    player.Scr = 100
+                } else {
+                    println("21")
+                }
+                break
+            }
+            else -> {
+                dealer.Scr = -1
+                break
+            }
+        }
+    }
+}

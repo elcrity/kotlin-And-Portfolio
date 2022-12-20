@@ -1,31 +1,31 @@
 package BlackJack
 
 class Deck(
-    var pName: String,//덱을 가진 플레이어 이름
+    var pName: String = "기본",//덱을 가진 플레이어 이름
     var Budjet :Int = 100,
     var Scr : Int = 0,
     var Card : ArrayList<Card> = ArrayList()//플레이어가 가지고 있는 덱
 )
 
-fun MakePlayer(name: String): Deck = Deck(name)//플레이어 이름 + Card형태의(name,pattern,value값) 배열 생성
+fun MakePlayer(name: String, cost: Int): Deck = Deck(name,cost)//플레이어 이름 + Card형태의(name,pattern,value값) 배열 생성
 
 fun SetDeck() : Deck{//정해진 벌수의 카드로 패산 생성
     val num = 1
-//    println("몇 벌의 카드로 게임을 시작할까요?")
-//    num = inputCheck()
+/*    println("몇 벌의 카드로 게임을 시작할까요?")
+    num = inputCheck()
 
-//    while(true) {
-//        println("몇벌의 카드로 게임을 시작할까요?")
-//        val read = readLine()//숫자 입력
-//
-//        if(read.equals("")) {//숫자 미입력시 반복
-//            println("숫자가 입력되지 않음. 확인해주세요")
-//            continue
-//        }
-//        else
-//            num = read!!.toInt()
-//        break
-//    }
+    while(true) {
+        println("몇벌의 카드로 게임을 시작할까요?")
+        val read = readLine()//숫자 입력
+
+        if(read.equals("")) {//숫자 미입력시 반복
+            println("숫자가 입력되지 않음. 확인해주세요")
+            continue
+        }
+        else
+            num = read!!.toInt()
+        break
+    }*/
 
     val deck = Deck("덱")
 
@@ -48,13 +48,27 @@ fun SetDeck() : Deck{//정해진 벌수의 카드로 패산 생성
             in 0..9 -> card.value = (i%13)+1
             in 10..12 -> card.value = 10
         }
-//        when(i%13){//카드 갯수, 드로우 확인용
-//            in 0..9 -> card.value = i
-//            in 10..12 -> card.value = i
-//        }
+/*        when(i%13){//카드 갯수, 드로우 확인용
+            in 0..9 -> card.value = i
+            in 10..12 -> card.value = i
+        }*/
 
         deck.Card.add(card)
     }
-    println("현재 카드 덱의 숫자는 " + deck.Card.size +"입니다.")
+//덱 정상 생성 확인용
+//    println("현재 카드 덱의 숫자는 " + deck.Card.size +"입니다.")
     return deck
+}
+
+fun resetDeck(user:Deck, deal:Deck ,base:Deck){
+    for(i in 0 ..user.Card.size-1){
+        base.Card.add(user.Card[0])
+        user.Card.removeAt(0)
+    }
+    for(i in 0 ..deal.Card.size-1){
+        base.Card.add(deal.Card[0])
+        deal.Card.removeAt(0)
+    }
+    user.Scr = 0
+    deal.Scr = 0
 }
