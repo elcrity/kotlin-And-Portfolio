@@ -1,14 +1,15 @@
-package BlackJack
+package main
 
 fun main() {
+    for(i in 0 .. 10)
+        println(i)
     println("""1. 블랙잭
         |2. 종료
     """.trimMargin())
     while(true) {
-        val input = readLine()
-        when(input) {
+        when(readLine()) {
             "1" -> {
-                BlackJack()
+                blackJack()
                 println("""다시 시작 - 1
                     |종료 - 2
                 """.trimMargin())

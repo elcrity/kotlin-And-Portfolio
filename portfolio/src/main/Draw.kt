@@ -1,4 +1,4 @@
-package BlackJack
+package main
 
 /*
 기존. 함수를 만들거나 카드 드로우 작동을 할때
@@ -16,87 +16,91 @@ fun DrawCard(user :Deck, deck:Deck){//두번째, 함수 작성 자체는 Deck.Ca
     user.Card.add(deck.Card[0])
     user.Scr += deck.Card[0].value
     deck.Card.removeAt(0)
+//    println("카드사이즈 : "+user.Card.size)
 }
 
 fun DrawStart(player: Deck, dealer :Deck, deck :Deck){
     for (i in 0..1) {//기본패
         DrawCard(player,deck)
+        delay(200)
+        println("뽑은 카드는 " + player.Card[player.Card.size-1].pattern + player.Card[player.Card.size-1].name + "입니다" )
         DrawCard(dealer,deck)
     }
-    print(player.pName +" ")
-    ShowHandCard(player)
+    delay(200)
+    showCardScore(player)
+
+    delay(300)
 
     println()
     println(dealer.pName +" ")
-    ShowCard(dealer.Card, 0)
+    showCard(dealer.Card, 0)
     println("뒷면")
     println()
 }
 
-fun DrawPlayer(player: Deck,deck: Deck) {
-    while (true) {
-        yesAce(player)
-        when (player.Scr) {
-            in 0..20 -> {
-                println(
-                    """추가로 드로우 하시겠습니까?
-                            |1. 드로우
-                            |2. 스탑
+fun drawPlayer(player: Deck, deck: Deck) :Boolean {
+    when (player.Scr) {
+        in 0..20 -> {
+            println(
+                """추가로 드로우 하시겠습니까?
+                            |1. 힛
+                            |2. 스탠드
                         """.trimMargin()
-                )
-                val input = inputCheck()
-                when (input) {
-                    1 -> {
-                        DrawCard(player, deck)
-                        ShowHandCard(player)
-                    }
-                    2 -> break
+            )
+            when (inputCheck()) {
+                1 -> {
+                    DrawCard(player, deck)
+                    delay()
+                    println("뽑은 카드는 " + player.Card[player.Card.size-1].pattern + player.Card[player.Card.size-1].name + "입니다" )
+                    showCardScore(player)
                 }
-            }
-            21 -> {
-                if (player.Card.size == 2) {
-                    println("블랙잭")
-                    player.Scr = 100
-                } else {
-                    println("21")
-                }
-                break
-            }
-            else -> {
-                player.Scr = -1
-                break
+                2 -> return false
             }
         }
+        21 -> {
+            if (player.Card.size == 2) {
+                println("블랙잭")
+                player.isBJ = true
+            }
+            return false
+        }
+        else -> {//버스트
+            player.Scr = -1
+            return false
+        }
     }
+    return true
 }
 
-fun DrawDealer(dealer: Deck,player: Deck,deck : Deck){
+fun drawDealer(dealer: Deck, deck : Deck) : Boolean{
     //딜러 드로우 시키기
-    while(player.Scr != -1){//딜러 드로우 시키기
+//    while(player.Scr != -1){//딜러 드로우 시키기
         when (dealer.Scr) {
             in 0..16 -> {
-                println(dealer.pName +"의 점수는 16점 이하 - 드로우")
+                println("딜러가 힛 합니다.")
+                delay()
                 DrawCard(dealer, deck)
-                ShowHandCard(dealer)
+                showCardScore(dealer)
             }
             in 17..20 -> {
-                println(dealer.pName +"의 점수는 17점 이상 - 스탑")
-                break
+                println("딜러가 스탠드 합니다.")
+                delay()
+                return false
             }
             21 -> {
                 println(dealer.pName +"의 점수는 21점")
+                delay()
                 if (dealer.Card.size == 2) {
                     println("블랙잭")
-                    player.Scr = 100
-                } else {
-                    println("21")
+                    dealer.isBJ = true
                 }
-                break
+                return false
             }
             else -> {
                 dealer.Scr = -1
-                break
+                return false
             }
         }
-    }
+//    }
+    return true
 }

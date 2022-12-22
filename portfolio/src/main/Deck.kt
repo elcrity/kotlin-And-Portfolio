@@ -1,15 +1,16 @@
-package BlackJack
+package main
 
 class Deck(
     var pName: String = "기본",//덱을 가진 플레이어 이름
     var Budjet :Int = 100,
     var Scr : Int = 0,
-    var Card : ArrayList<Card> = ArrayList()//플레이어가 가지고 있는 덱
+    var Card : ArrayList<Card> = ArrayList(),//플레이어가 가지고 있는 덱
+    var isBJ : Boolean = false
 )
 
-fun MakePlayer(name: String, cost: Int): Deck = Deck(name,cost)//플레이어 이름 + Card형태의(name,pattern,value값) 배열 생성
+fun makePlayer(name: String, cost: Int = 100): Deck = Deck(name,cost)//플레이어 이름 + Card형태의(name,pattern,value값) 배열 생성
 
-fun SetDeck() : Deck{//정해진 벌수의 카드로 패산 생성
+fun setDeck() : Deck{//정해진 벌수의 카드로 패산 생성
     val num = 1
 /*    println("몇 벌의 카드로 게임을 시작할까요?")
     num = inputCheck()
@@ -29,7 +30,7 @@ fun SetDeck() : Deck{//정해진 벌수의 카드로 패산 생성
 
     val deck = Deck("덱")
 
-    for(i in 0 .. 52*num-1){
+    for(i in 0 until 52*num){
         val card = Card()
         when(i%13){//((0~12)+13*i)까지 각각 A~K
             0 -> card.name = "A"
@@ -61,11 +62,11 @@ fun SetDeck() : Deck{//정해진 벌수의 카드로 패산 생성
 }
 
 fun resetDeck(user:Deck, deal:Deck ,base:Deck){
-    for(i in 0 ..user.Card.size-1){
+    for(i in 0 until user.Card.size){
         base.Card.add(user.Card[0])
         user.Card.removeAt(0)
     }
-    for(i in 0 ..deal.Card.size-1){
+    for(i in 0 until deal.Card.size){
         base.Card.add(deal.Card[0])
         deal.Card.removeAt(0)
     }
