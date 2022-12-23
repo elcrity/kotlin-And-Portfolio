@@ -42,7 +42,7 @@ fun blackJack() {
 
         while(true) {
             dealerAce(dealer,player1)
-            if(!(player1.deck[0].isBJ && dealer.deck[0].Scr == 21))
+            if(!(player1.deck[0].isBJ && dealer.deck[0].Scr != 21))
             when(drawDealer(dealer, deck)){
                 true -> continue
                 false -> break
