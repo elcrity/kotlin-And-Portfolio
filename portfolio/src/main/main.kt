@@ -1,7 +1,7 @@
 package main
 
 fun main() {
-    println("""1. 블랙잭
+    println("""1. 게임시작
         |2. 종료
     """.trimMargin())
     while(true) {

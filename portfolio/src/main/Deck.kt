@@ -1,7 +1,7 @@
 package main
 
 class Deck(
-    var pName: String = "기본",//덱을 가진 플레이어 이름
+    var pName: String,//덱을 가진 플레이어 이름
     var Budjet :Int = 100,
     var Scr : Int = 0,
     var Card : ArrayList<Card> = ArrayList(),//플레이어가 가지고 있는 덱
@@ -11,22 +11,8 @@ class Deck(
 fun makePlayer(name: String, cost: Int = 100): Deck = Deck(name,cost)//플레이어 이름 + Card형태의(name,pattern,value값) 배열 생성
 
 fun setDeck() : Deck{//정해진 벌수의 카드로 패산 생성
-    val num = 1
-/*    println("몇 벌의 카드로 게임을 시작할까요?")
-    num = inputCheck()
-
-    while(true) {
-        println("몇벌의 카드로 게임을 시작할까요?")
-        val read = readLine()//숫자 입력
-
-        if(read.equals("")) {//숫자 미입력시 반복
-            println("숫자가 입력되지 않음. 확인해주세요")
-            continue
-        }
-        else
-            num = read!!.toInt()
-        break
-    }*/
+    println("몇 벌의 카드로 게임을 시작할까요?")
+    val num = inputCheck()
 
     val deck = Deck("덱")
 

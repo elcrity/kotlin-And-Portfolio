@@ -12,22 +12,22 @@ player.Card.add(DrawCard(deck)) 일일히 전부 적어줘야했고
 //}
 
 
-fun DrawCard(user :Deck, deck:Deck){//두번째, 함수 작성 자체는 Deck.Card.property가 되어 귀찮아졌지만 사용할때 편해짐
+fun drawCard(user :Deck, deck:Deck){//두번째, 함수 작성 자체는 Deck.Card.property가 되어 귀찮아졌지만 사용할때 편해짐
     user.Card.add(deck.Card[0])
     user.Scr += deck.Card[0].value
     deck.Card.removeAt(0)
 //    println("카드사이즈 : "+user.Card.size)
 }
 
-fun DrawStart(player: Deck, dealer :Deck, deck :Deck){
+fun drawStart(player: Deck, dealer :Deck, deck :Deck){
     for (i in 0..1) {//기본패
-        DrawCard(player,deck)
+        drawCard(player,deck)
         delay(200)
         println("뽑은 카드는 " + player.Card[player.Card.size-1].pattern + player.Card[player.Card.size-1].name + "입니다" )
-        DrawCard(dealer,deck)
+        drawCard(dealer,deck)
     }
     delay(200)
-    showCardScore(player)
+    showCardAndScore(player)
 
     delay(300)
 
@@ -49,10 +49,10 @@ fun drawPlayer(player: Deck, deck: Deck) :Boolean {
             )
             when (inputCheck()) {
                 1 -> {
-                    DrawCard(player, deck)
+                    drawCard(player, deck)
                     delay()
                     println("뽑은 카드는 " + player.Card[player.Card.size-1].pattern + player.Card[player.Card.size-1].name + "입니다" )
-                    showCardScore(player)
+                    showCardAndScore(player)
                 }
                 2 -> return false
             }
@@ -79,8 +79,8 @@ fun drawDealer(dealer: Deck, deck : Deck) : Boolean{
             in 0..16 -> {
                 println("딜러가 힛 합니다.")
                 delay()
-                DrawCard(dealer, deck)
-                showCardScore(dealer)
+                drawCard(dealer, deck)
+                showCardAndScore(dealer)
             }
             in 17..20 -> {
                 println("딜러가 스탠드 합니다.")
