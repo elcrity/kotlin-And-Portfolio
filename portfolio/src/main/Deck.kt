@@ -1,21 +1,24 @@
 package main
 
 class Deck(
-    var pName: String,//덱을 가진 플레이어 이름
-    var Budjet :Int = 100,
+//    var pName: String,//덱을 가진 플레이어 이름
+//    var Budjet :Int = 100,
     var Scr : Int = 0,
     var Card : ArrayList<Card> = ArrayList(),//플레이어가 가지고 있는 덱
     var isBJ : Boolean = false
 )
 
-fun makePlayer(name: String, cost: Int = 100): Deck = Deck(name,cost)//플레이어 이름 + Card형태의(name,pattern,value값) 배열 생성
 
-fun setDeck() : Deck{//정해진 벌수의 카드로 패산 생성
-    println("몇 벌의 카드로 게임을 시작할까요?")
-    val num = inputCheck()
 
-    val deck = Deck("덱")
-
+fun setDeck() : Player{//정해진 벌수의 카드로 패산 생성
+//    println("""
+//        몇 벌의 카드로 게임을 시작할까요?
+//        일반적으로는 1벌 혹은 6벌을 사용합니다.
+//    """.trimIndent())
+//    val num : Int = inputCheck()
+    val num = 1
+    val deck = Player("덱")
+    deck.deck.add(Deck())
     for(i in 0 until 52*num){
         val card = Card()
         when(i%13){//((0~12)+13*i)까지 각각 A~K
@@ -40,22 +43,22 @@ fun setDeck() : Deck{//정해진 벌수의 카드로 패산 생성
             in 10..12 -> card.value = i
         }*/
 
-        deck.Card.add(card)
+        deck.deck[0].Card.add(card)
     }
 //덱 정상 생성 확인용
 //    println("현재 카드 덱의 숫자는 " + deck.Card.size +"입니다.")
     return deck
 }
 
-fun resetDeck(user:Deck, deal:Deck ,base:Deck){
-    for(i in 0 until user.Card.size){
-        base.Card.add(user.Card[0])
-        user.Card.removeAt(0)
+fun resetDeck(user:Player, deal:Player ,base:Player){
+    for(i in 0 until user.deck[0].Card.size){
+        base.deck[0].Card.add(user.deck[0].Card[0])
+        user.deck[0].Card.removeAt(0)
     }
-    for(i in 0 until deal.Card.size){
-        base.Card.add(deal.Card[0])
-        deal.Card.removeAt(0)
+    for(i in 0 until deal.deck[0].Card.size){
+        base.deck[0].Card.add(deal.deck[0].Card[0])
+        deal.deck[0].Card.removeAt(0)
     }
-    user.Scr = 0
-    deal.Scr = 0
+    user.deck[0].Scr = 0
+    deal.deck[0].Scr = 0
 }

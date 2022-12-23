@@ -10,7 +10,18 @@ fun inputCheck() :Int{//입력값 null 체크
     }
 }
 
-fun costCheck(player : Deck, dealer: Deck) :Int {//입력값 null 체크
+fun inputCheckStr() :String{//입력값 null 체크
+    while(true) {
+        println("플레이어 명을 입력해주세요")
+        val input = readln()//숫자 입력
+        when(if(input == "") -1 else input){
+            -1 -> println("제대로 입력되지 않음. 확인해주세요")
+            else -> return input
+        }
+    }
+}
+
+fun costCheck(player : Player, dealer: Player) :Int {//입력값 null 체크
     while (true) {
         println("배팅 금액을 정해주세요. 기본 배팅액은 10원입니다.")
         val input = readln()
