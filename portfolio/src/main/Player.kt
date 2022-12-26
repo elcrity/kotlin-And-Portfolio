@@ -1,9 +1,14 @@
 package main
 
 class Player(
-    var pName: String,//덱을 가진 플레이어 이름
+    val pName: String,//덱을 가진 플레이어 이름
     var Budjet :Int = 100,
-    var deck : ArrayList<Deck> = ArrayList()
+    val deck : ArrayList<Deck> = ArrayList(arrayListOf<Deck>().plus(Deck())) // Deck 타입의 ArrayList에 Deck 형태의 인스턴스 생성
 )
 
-fun makePlayer(name: String, cost: Int = 100): Player = Player(name,cost)//플레이어 이름 + Card형태의(name,pattern,value값) 배열 생성
+fun makePlayer(name: String, cost: Int = 100) = when(name){
+    "dealer" -> Player("딜러",500)
+       else -> Player(name,cost)
+}
+
+fun addPlayerDeck(name : Player) : Boolean = name.deck.add(Deck())

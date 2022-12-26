@@ -6,10 +6,8 @@ fun blackJack() {
     var winner : Player
     val dealer = makePlayer("딜러",500)
     val player1 = makePlayer(inputCheckStr())
-    dealer.deck.add(Deck())
-    player1.deck.add(Deck())
     val deck = setDeck()
-    var split = 1
+    var split = 0
     
     while(true) {//게임실행 본문
         var investment = costCheck(player1,dealer)
@@ -19,23 +17,31 @@ fun blackJack() {
 
         drawStart(player1, dealer, deck)
 
+//스플릿 기능 제작중
         if(player1.deck[0].Card[0].name == player1.deck[0].Card[1].name){
+            addPlayerDeck(player1)
+            drawCard(player1.deck[1], player1.deck[0])
+            drawCard(player1.deck[0], deck.deck[0])
+            drawCard(player1.deck[1], deck.deck[0])
             split++
-
         }
+
 /*블랙잭 테스트용
         var testCard1 = Card("A","*",1)
         var testCard2 = Card("10","*",10)
         handCard1.Card.add(testCard1)
         handCard1.Scr += handCard1.Card[0].value
         handCard1.Card.add(testCard2)
-        handCard1.Scr += handCard1.Card[1].value*/
-        do{
-            when{
-               player1.deck[0].Scr != -1 -> yesAce(player1)
-            }
-            val b: Boolean = drawPlayer(player1,deck)
-        }while(b)
+        handCard1.Scr += handCard1.Card[1].value
+*/
+        for(i in 0..split) {
+            do {
+                when {
+                    player1.deck[0].Scr != -1 -> yesAce(player1)
+                }
+                val b: Boolean = drawPlayer(player1, deck, split)
+            } while (b)
+        }
         println()
 
         delay()

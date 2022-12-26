@@ -12,10 +12,10 @@ player.Card.add(DrawCard(deck)) 일일히 전부 적어줘야했고
 //}
 
 
-fun drawCard(user :Deck, deck:Deck){//두번째, 함수 작성 자체는 Deck.Card.property가 되어 귀찮아졌지만 사용할때 편해짐
-    user.Card.add(deck.Card[0])
-    user.Scr += deck.Card[0].value
-    deck.Card.removeAt(0)
+fun drawCard(dstn :Deck, start:Deck){//두번째, 함수 작성 자체는 Deck.Card.property가 되어 귀찮아졌지만 사용할때 편해짐
+    dstn.Card.add(start.Card[0])
+    dstn.Scr += start.Card[0].value
+    start.Card.removeAt(0)
 //    println("카드사이즈 : "+user.Card.size)
 }
 
@@ -38,8 +38,8 @@ fun drawStart(player: Player, dealer :Player, deck :Player){
     println()
 }
 
-fun drawPlayer(player: Player, deck: Player) :Boolean {
-    when (player.deck[0].Scr) {
+fun drawPlayer(player: Player, deck: Player ,num :Int = 0) :Boolean {
+    when (player.deck[num].Scr) {
         in 0..20 -> {
             println(
                 """추가로 드로우 하시겠습니까?
@@ -49,23 +49,24 @@ fun drawPlayer(player: Player, deck: Player) :Boolean {
             )
             when (inputCheck()) {
                 1 -> {
-                    drawCard(player.deck[0], deck.deck[0])
-                    delay()
-                    println("뽑은 카드는 " + player.deck[0].Card[player.deck[0].Card.size-1].pattern + player.deck[0].Card[player.deck[0].Card.size-1].name + "입니다" )
+                    drawCard(player.deck[num], deck.deck[0])
+                    delay(100)
+                    println("뽑은 카드는 " + player.deck[num].Card[player.deck[num].Card.size-1].pattern + player.deck[num].Card[player.deck[num].Card.size-1].name + "입니다" )
+                    delay(100)
                     showCardAndScore(player)
                 }
                 2 -> return false
             }
         }
         21 -> {
-            if (player.deck[0].Card.size == 2) {
+            if (player.deck[num].Card.size == 2) {
                 println("블랙잭")
-                player.deck[0].isBJ = true
+                player.deck[num].isBJ = true
             }
             return false
         }
         else -> {//버스트
-            player.deck[0].Scr = -1
+            player.deck[num].Scr = -1
             return false
         }
     }

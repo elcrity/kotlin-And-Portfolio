@@ -1,10 +1,8 @@
 package main
 
 class Deck(
-//    var pName: String,//덱을 가진 플레이어 이름
-//    var Budjet :Int = 100,
     var Scr : Int = 0,
-    var Card : ArrayList<Card> = ArrayList(),//플레이어가 가지고 있는 덱
+    val Card : ArrayList<Card> = ArrayList(),//플레이어가 가지고 있는 덱
     var isBJ : Boolean = false
 )
 
