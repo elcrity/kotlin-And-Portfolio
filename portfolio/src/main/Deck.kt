@@ -16,7 +16,6 @@ fun setDeck() : Player{//정해진 벌수의 카드로 패산 생성
 //    val num : Int = inputCheck()
     val num = 1
     val deck = Player("덱")
-    deck.deck.add(Deck())
     for(i in 0 until 52*num){
         val card = Card()
         when(i%13){//((0~12)+13*i)까지 각각 A~K

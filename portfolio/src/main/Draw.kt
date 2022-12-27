@@ -19,6 +19,8 @@ fun drawCard(dstn :Deck, start:Deck){//두번째, 함수 작성 자체는 Deck.C
 //    println("카드사이즈 : "+user.Card.size)
 }
 
+
+
 fun drawStart(player: Player, dealer :Player, deck :Player){
     for (i in 0..1) {//기본패
         drawCard(player.deck[0],deck.deck[0])

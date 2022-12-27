@@ -2,12 +2,12 @@ package main
 
 fun blackJack() {
     //게임 시작시 덱, 플레이어 생성
-    //라운드 체크
     var winner : Player
     val dealer = makePlayer("딜러",500)
     val player1 = makePlayer(inputCheckStr())
     val deck = setDeck()
     var split = 0
+    val aceNum : ArrayList<Int> = ArrayList()
     
     while(true) {//게임실행 본문
         var investment = costCheck(player1,dealer)
@@ -18,13 +18,13 @@ fun blackJack() {
         drawStart(player1, dealer, deck)
 
 //스플릿 기능 제작중
-        if(player1.deck[0].Card[0].name == player1.deck[0].Card[1].name){
+/*        if(player1.deck[0].Card[0].name == player1.deck[0].Card[1].name){
             addPlayerDeck(player1)
             drawCard(player1.deck[1], player1.deck[0])
             drawCard(player1.deck[0], deck.deck[0])
             drawCard(player1.deck[1], deck.deck[0])
             split++
-        }
+        }*/
 
 /*블랙잭 테스트용
         var testCard1 = Card("A","*",1)
