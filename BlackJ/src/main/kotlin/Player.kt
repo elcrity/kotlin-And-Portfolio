@@ -2,6 +2,9 @@ class Player(private val name: String) {
     private val cards: MutableList<Card> = mutableListOf()
     private var score : Int = 0
 
+    fun hi(){
+        println("하이")
+    }
 
     fun drawCard(deck: Deck) : Boolean {
         var hasAce = false
