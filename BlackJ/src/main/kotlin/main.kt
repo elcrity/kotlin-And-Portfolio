@@ -16,19 +16,15 @@ fun main() {
         dealerCards.drawCard(deck)
     }
 
-    // 플레이어가 카드를 계속 뽑거나 그만둘 때까지 반복
+
         playerCards.showCards()
         playerCards.showScore()
         dealerCards.showCards(false)
-
+    // 플레이어가 카드를 계속 뽑거나 그만둘 때까지 반복
     while (true) {
         println("카드를 더 받으시겠습니까? (Y/N)")
         val input = readLine()?.uppercase(Locale.getDefault())
         if (input == "Y") {
-//            val card = deck.drawRandomCard()!!
-
-//            playerCards.addCard(deck.cards[0])
-//            playerCards.addCard(deck.drawDeckCard()!!)
             println("드로우한 카드는 ${deck.cards[0]}")
             playerCards.drawCard(deck)
             playerCards.showCards()
