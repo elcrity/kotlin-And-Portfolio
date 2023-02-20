@@ -8,11 +8,4 @@ class Deck {
             }
         }
     }
-
-    fun drawDeckCard(): Card? {
-        if (cards.isEmpty()) {
-            return null
-        }
-        return cards.removeAt(0)
-    }
 }
