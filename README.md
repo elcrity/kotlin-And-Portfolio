@@ -1,3 +1,3 @@
 # ktlPP
 1. 코틀린용 코드 portfolioTest/src/main/main.kt
-2. 안드로이드용 코드 BlackJ/
+2. 코드 정리 BlackJ/src/main/main.kt
