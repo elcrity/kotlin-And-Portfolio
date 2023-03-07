@@ -1,6 +1,6 @@
 package com.example.blackjack
 
-import BlackjackAdapter
+import CardAdapter
 import Card
 import Deck
 import android.os.Bundle

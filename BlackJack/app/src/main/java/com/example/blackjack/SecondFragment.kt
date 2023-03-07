@@ -1,9 +1,10 @@
 package com.example.blackjack
 
-import BlackjackAdapter
 import Card
+import CardAdapter
 import Deck
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,7 @@ import com.example.blackjack.databinding.FragmentSecondBinding
 class SecondFragment : Fragment() {
 
     private var _binding: FragmentSecondBinding? = null
+    private var deck = Deck().cards.shuffled()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -29,16 +31,21 @@ class SecondFragment : Fragment() {
     ): View? {
         _binding = FragmentSecondBinding.inflate(inflater, container, false)
 
-        val card = mutableListOf<Card>()
-        val deck = Deck()
-        deck.cards.shuffle()
-        for(list in deck.cards){
-            card.add(list)
-        }
-        val adapter = BlackjackAdapter(card)
-        binding.recyclerView.adapter = adapter
-        binding.recyclerView2.adapter = adapter
-        val manager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        // 첫 번째 RecyclerView에서 보여줄 카드 2장을 가져옵니다.
+        val firstTwoCards = deck.take(2)
+        deck = deck.subtract(firstTwoCards.toSet()).toList()
+
+        // 두 번째 RecyclerView에서 보여줄 카드 2장을 가져옵니다.
+        val nextTwoCards = deck.take(2)
+
+        // 두 번째 RecyclerView에서 보여줄 카드는 이전에 선택한 카드와 중복되면 안 되므로,
+        // 이전에 선택한 카드와 새로 선택한 카드를 합쳐서 중복을 제거합니다.
+
+        // RecyclerView에 어댑터를 설정합니다.
+        binding.recyclerView.adapter = CardAdapter(firstTwoCards.toMutableList())
+        binding.recyclerView2.adapter = CardAdapter(nextTwoCards.toMutableList())
+
+        // RecyclerView의 레이아웃 매니저를 설정합니다.
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.recyclerView2.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
