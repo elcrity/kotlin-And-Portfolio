@@ -1,5 +1,9 @@
+package com.example.blackjack
+
+import Card
+
 class Player(private val name: String) {
-    private val cards: MutableList<Card> = mutableListOf()
+    val cards: MutableList<Card> = mutableListOf()
     private var score : Int = 0
 
     fun hi(){
