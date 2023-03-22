@@ -2,8 +2,8 @@
 ```
 1. 코틀린용 코드 portfolioTest/src/main/main.kt
 실행 후 정해진 입력을 할시 블랙잭 카드게임 실행과 드로우등을 처리. 규칙에 맞게 승 패를 정하며 상대방의 자산을 전부 빼앗으면 승리
-[실행화면](https://github.com/elcrity/ktlPP/blob/main/portfolioTest/%EC%8B%A4%ED%96%89%ED%99%94%EB%A9%B4.jpg)
 ```
+[실행화면](https://github.com/elcrity/ktlPP/blob/main/portfolioTest/%EC%8B%A4%ED%96%89%ED%99%94%EB%A9%B4.jpg)
 ```
 2. 코드 정리 BlackJ/src/main/main.kt
 위의 코드에서 이넘 클래스 등을 사용하여 기초적인 덱 생성등을 조금더 정리하여 작성
