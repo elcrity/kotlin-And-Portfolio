@@ -11,7 +11,7 @@
 기본 기능 작성.
 1과의 차이는 코드를 정리하여 간소화함
 ```
-![실행화면](https://github.com/elcrity/ktlPP/blob/main/BlackJ/%EC%8B%A4%ED%96%89%ED%99%94%EB%A9%B42.jpg)
+![실행화면2](https://github.com/elcrity/ktlPP/blob/main/BlackJ/%EC%8B%A4%ED%96%89%ED%99%94%EB%A9%B42.jpg)
 
 ```
 3. 안드로이드용 코드 BlackJack/ 안드로이드 스튜디오에서 실행
