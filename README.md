@@ -11,7 +11,7 @@
 기본 기능 작성.
 
 ```
-![실행화면2](https://github.com/elcrity/ktlPP/blob/main/BlackJ/%EC%8B%A4%ED%96%89%ED%99%94%EB%A9%B42.jpg)
+![실행화면2](https://github.com/elcrity/ktlPP/blob/main/BlackJ/%EC%8B%A4%ED%96%89%ED%99%94%EB%A9%B42%EB%B3%80%EA%B2%BD.jpg)
 
 ```
 3. 안드로이드용 코드 BlackJack/ 안드로이드 스튜디오에서 실행
