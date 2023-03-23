@@ -1,4 +1,5 @@
 1.시작화면
+
 ![1](https://github.com/elcrity/ktlPP/blob/main/CupCakeAddFunction/1.jpg)
 ``` 
 해당 화면에서 컵케이크 갯수 설정, 기본 설정은 개당 2.0$
