@@ -1,19 +1,13 @@
 package main
 
+//portfolioTest - Deck.kt
 class Deck(
     var Scr : Int = 0,
     val Card : ArrayList<Card> = ArrayList(),//플레이어가 가지고 있는 덱
     var isBJ : Boolean = false
 )
 
-
-
 fun setDeck() : Player{//정해진 벌수의 카드로 패산 생성
-//    println("""
-//        몇 벌의 카드로 게임을 시작할까요?
-//        일반적으로는 1벌 혹은 6벌을 사용합니다.
-//    """.trimIndent())
-//    val num : Int = inputCheck()
     val num = 1
     val deck = Player("덱")
     for(i in 0 until 52*num){
@@ -35,10 +29,6 @@ fun setDeck() : Player{//정해진 벌수의 카드로 패산 생성
             in 0..9 -> card.value = (i%13)+1
             in 10..12 -> card.value = 10
         }
-/*        when(i%13){//카드 갯수, 드로우 확인용
-            in 0..9 -> card.value = i
-            in 10..12 -> card.value = i
-        }*/
 
         deck.deck[0].Card.add(card)
     }
