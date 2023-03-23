@@ -1,9 +1,11 @@
 package com.example.blackjack
 
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 
-class DeckViewModel {
+class DeckViewModel : ViewModel() {
 
     private val _score = MutableLiveData<Int>()
     val score: LiveData<Int> = _score

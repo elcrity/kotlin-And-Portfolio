@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blackjack.databinding.FragmentSecondBinding
@@ -17,18 +18,20 @@ class SecondFragment : Fragment() {
     private val player1 = Player("딜러")
     private val player2 = Player("1번")
 
-    private var _binding: FragmentSecondBinding? = null
+    private var binding: FragmentSecondBinding? = null
+    private val sViewModel : DeckViewModel by activityViewModels()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
-    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val deck = Deck()
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
+        val fragmentBinding = FragmentSecondBinding.inflate(inflater, container, false)
+        binding = fragmentBinding
+
 
         repeat(2) {
             player1.drawCard(deck)
@@ -39,28 +42,31 @@ class SecondFragment : Fragment() {
 
 
         // RecyclerView에 어댑터를 설정합니다.
-        binding.recyclerView.adapter = CardAdapter(player1.cards)
-        binding.recyclerView2.adapter = CardAdapter(player2.cards)
+        binding?.apply {
+            recyclerView.adapter = CardAdapter(player1.cards)
+            recyclerView2.adapter = CardAdapter(player2.cards)
 
-        // RecyclerView의 레이아웃 매니저를 설정합니다.
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.recyclerView2.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            // RecyclerView의 레이아웃 매니저를 설정합니다.
+            recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            recyclerView2.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        }
 
-        return binding.root
+
+        return fragmentBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+        binding?.apply {
+            lifecycleOwner = viewLifecycleOwner
+            viewModel = sViewModel
+            secondFragment = this@SecondFragment
         }
 
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    fun backScreen(){
+        findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
     }
-
 }
