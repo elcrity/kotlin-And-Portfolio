@@ -26,6 +26,11 @@
 4. 주문 정보 확인 후 메일, 메세지로 보내기
 
 ![4](https://github.com/elcrity/ktlPP/blob/main/CupCakeAddFunction/4.jpg)
+
+![4-2](https://github.com/elcrity/ktlPP/blob/main/CupCakeAddFunction/4-2.jpg)
+
+보내기 선택후 사용 어플을 고르는 화면
+
 ---
 5. 보내질 내용
 
