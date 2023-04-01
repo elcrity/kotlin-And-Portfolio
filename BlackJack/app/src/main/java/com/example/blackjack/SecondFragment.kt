@@ -15,11 +15,12 @@ import com.example.blackjack.databinding.FragmentSecondBinding
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
 class SecondFragment : Fragment() {
-    private val player1 = Player("딜러")
-    private val player2 = Player("1번")
+    private val player1 = DeckViewModel.Player("딜러")
+    private val player2 = DeckViewModel.Player("1번")
 
     private var binding: FragmentSecondBinding? = null
     private val sViewModel : DeckViewModel by activityViewModels()
+    private val deck = DeckViewModel.Deck()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -28,11 +29,22 @@ class SecondFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val deck = Deck()
+
         val fragmentBinding = FragmentSecondBinding.inflate(inflater, container, false)
         binding = fragmentBinding
 
 
+        return fragmentBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding?.apply {
+            lifecycleOwner = viewLifecycleOwner
+            viewModel = sViewModel
+            secondFragment = this@SecondFragment
+        }
         repeat(2) {
             player1.drawCard(deck)
         }
@@ -49,19 +61,6 @@ class SecondFragment : Fragment() {
             // RecyclerView의 레이아웃 매니저를 설정합니다.
             recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             recyclerView2.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        }
-
-
-        return fragmentBinding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        binding?.apply {
-            lifecycleOwner = viewLifecycleOwner
-            viewModel = sViewModel
-            secondFragment = this@SecondFragment
         }
 
     }

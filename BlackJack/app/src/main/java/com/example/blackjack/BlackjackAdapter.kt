@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.blackjack.R
 import com.example.blackjack.databinding.ListCardBinding
 
-class CardAdapter(private val dataList: MutableList<Card>) :
+class CardAdapter(private val dataList: MutableList<DeckViewModel.Card>) :
     RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
@@ -27,7 +27,7 @@ class CardAdapter(private val dataList: MutableList<Card>) :
 
     inner class CardViewHolder(val binding: ListCardBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(data: Card) {
+        fun bind(data: DeckViewModel.Card) {
             binding.textView.text = """${data.suit}
                 |${data.rank}
             """.trimMargin()

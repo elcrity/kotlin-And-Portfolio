@@ -45,7 +45,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textview_second"
-            android:onClick="@{() -> secondFragment.backScreen()"/>
+            android:onClick="@{() -> secondFragment.backScreen()}"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView2"

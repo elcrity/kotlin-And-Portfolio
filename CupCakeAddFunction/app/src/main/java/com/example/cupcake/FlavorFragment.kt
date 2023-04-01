@@ -59,14 +59,10 @@ class FlavorFragment : Fragment() {
             flavorFragment = this@FlavorFragment
 
 //            nextButton.setOnClickListener { goToNextScreen() }
+//            binding.viewModel = sharedViewModel
         }
-        //binding.viewModel = sharedViewModel
-        //binding.nextButton.setOnClickListener{ goToNextScreen() }
-    }
 
-    /**
-     * Navigate to the next screen to choose pickup date.
-     */
+    }
     fun goToNextScreen() {
         findNavController().navigate(R.id.action_flavorFragment_to_pickupFragment)
 

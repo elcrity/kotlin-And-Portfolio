@@ -22,9 +22,6 @@ class FirstFragment : Fragment() {
     private var binding: FragmentFirstBinding? = null
     private val sViewModel : DeckViewModel by activityViewModels()
 
-    private val player1 = Player("딜러")
-    private val player2 = Player("1번")
-
     // This property is only valid between onCreateView and
     // onDestroyView.
 
